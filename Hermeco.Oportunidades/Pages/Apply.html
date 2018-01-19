@@ -1,0 +1,63 @@
+﻿<div class="content">
+
+    <header class="container component-header">
+        <div class="row">
+            <h2><span>{{oportunidad.Cargo}}</span></h2>
+        </div>
+        <div class="row">
+            <h5><span>{{oportunidad.Ciudadsolicitud}}</span></h5>            
+        </div>
+    </header>
+
+    
+    <div class="container component-body">
+            
+        <h3>Enviar tu aplicación</h3>
+        <form name="form1"  id="formApply"  ng-controller="ApplyController" ng-submit="submit(Application)">
+            <div class="loader" ng-show="showLoader"></div>
+            <div class="alert alert-dismissable" ng-class="alertType" ng-show="showAlert">
+                <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>¡{{alertTitle}}!</strong> {{alertText}}
+            </div>
+            <div class="form-group row">
+                <label for="inputNombre" class="col-sm-2 col-form-label">Nombre Completo<span class="required">✱</span></label>
+                <div class="col-sm-10">
+                    <!-- Nombre -->
+                    <input type="text" id="inputNombre" name="inputNombre" class="form-control" ng-model="Application.Nombre" required>
+                    <!--IdRequisicion-->
+                    <input type="hidden" id="Idrequisicion" name="Idrequisicion" value="{{oportunidad.Idrequisicion}}" ng-value="{{oportunidad.Idrequisicion}}" ng-model="Application.Idrequisicion" />
+                    <input type="hidden" id="Cargo" name="Cargo" value="{{oportunidad.Cargo}}" ng-value="{{oportunidad.Cargo}}" ng-model="Application.Cargo" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail" class="col-sm-2 col-form-label">Correo Electrónico<span class="required">✱</span></label>
+                <div class="col-sm-10">
+                    <!-- Email -->
+                    <input type="email" class="form-control" name="inputEmail" id="inputEmail" placeholder="ejemplo@dominio.com" required ng-model="Application.Email">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputTel" class="col-sm-2 col-form-label">Teléfono<span class="required">✱</span></label>
+                <div class="col-sm-10">
+                    <!-- Telefono -->
+                    <input type="tel" class="form-control" name="inputTel" id="inputTel" required ng-model="Application.Telefono">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="inputTel" class="col-sm-2 col-form-label">Adjuntar Curriculum<span class="required">✱</span></label>
+                <div class="col-sm-10">
+                    <!-- Doc -->
+                    <input name="myFile" type="file" file-model="myFile" class="file" id="cvInputFile" aria-describedby="fileHelp" ng-model="Application.Doc" accept=".doc, .docx,.ppt, .pptx,.txt,.pdf" required />
+                    <small id="fileHelp" class="form-text text-muted">Adjuntar un archivo con tu hoja de vida (.doc, .docx, .ppt, .pptx, .pdf).</small>
+                </div>
+            </div>
+            <div>
+                <!--<input type="submit" class="btn btn-lg btn-primary" value="Enviar" ng-click="submit(Application)"/>-->
+                <input type="submit" class="btn btn-lg btn-primary" value="Enviar" />                
+            </div>            
+        </form>
+    </div>
+
+</div>
+

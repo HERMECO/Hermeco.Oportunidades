@@ -1,0 +1,74 @@
+﻿
+<section class="component component-offset-top component-hero">
+
+    <div class="component-hero--background">
+        <div class="background-image-img visible-md visible-lg">
+            <div style="background-image: url('http://clientes.hermeco.com/Content/images/login.jpg');"></div>
+        </div>
+    </div>
+
+    <div class="component-hero--content ">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <div class="popover-wrapper">
+                        <h1>Únete a nosotros</h1>
+                    </div>
+                    <a href="#convocatorias" target="_self">Ver {{cantidad}} ofertas</a>
+                </div>
+            </div>
+            <section id="section04" class="demo section1">
+                <a href="#convocatorias" target="_self"><span></span></a>
+            </section>
+        </div>
+
+    </div>
+
+</section>
+
+
+<header class="container component-header">
+    <div class="row" id="convocatorias">        
+        <h2 class="col-sm-12 component-header--title text-center">Convocatorias abiertas</h2>
+    </div>
+</header>
+
+<div class="container component-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-sortable table-fixed">
+                <thead class="hidden-xs">
+                    <tr>
+                        <th class="table-header-1" data-sort="string">Oferta</th>
+                        <!--<th class="table-header-2" data-sort="string">Categoría</th>-->
+                        <th class="table-header-3" data-sort="string">Ubicación</th>
+                        <th class="table-header-4" data-sort="string">Fecha de Cierre</th>
+                    </tr>
+                </thead>
+
+                <tbody class="js-jobs-results">
+
+                    <tr ng-repeat="oportunidad in oportunidades">
+
+                        <td class="table-item table-item-title">
+                            <a href="#!detail/{{oportunidad.Idrequisicion}}" title="" target="_self" class="table-item--link">
+                                <h4 class="table-item--title-heading">{{oportunidad.Cargo}}</h4>
+                            </a>
+                        </td>
+                        <!--<td data-header="Category" class="table-item item-valign-top" data-type="category">
+                            <p>{{oportunidad.Arearequisicion}}</p>
+                        </td>-->
+                        <td data-header="Location" class="table-item item-valign-top" data-type="location">
+                            <p>{{oportunidad.Ciudadsolicitud}}</p>
+                        </td>
+                        <td data-header="Enddate" class="table-item item-valign-top" data-type="">
+                            <p>{{oportunidad.Fechafin | date:'dd/MM/yyyy'}}</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

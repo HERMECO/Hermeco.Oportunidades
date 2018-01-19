@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="Hermeco.Oportunidades" namespace="Hermeco.Oportunidades.Models" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="HermecoCvrequisicion" table="Hermeco_CVRequisicion" lazy="true" >
+    <id name="Idrequisicion" column="IdRequisicion">
+      <generator class="identity" />
+    </id>
+    <property name="Consecutivo">
+      <column name="Consecutivo" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Cargo">
+      <column name="Cargo" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Arearequisicion">
+      <column name="AreaRequisicion" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Experiencia">
+      <column name="Experiencia" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Profesion">
+      <column name="Profesion" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Ciudadsolicitud">
+      <column name="CiudadSolicitud" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Fechaingreso">
+      <column name="FechaIngreso" sql-type="datetime" not-null="false" />
+    </property>
+    <property name="Actividades">
+      <column name="Actividades" sql-type="varchar" not-null="false" />
+    </property>
+    <property name="Fechainicio">
+      <column name="FechaInicio" sql-type="datetime" not-null="true" />
+    </property>
+    <property name="Fechafin">
+      <column name="FechaFin" sql-type="datetime" not-null="true" />
+    </property>
+    <property name="Publicarinternet">
+      <column name="PublicarInternet" sql-type="bit" not-null="true" />
+    </property>
+    <property name="Publicarintranet">
+      <column name="PublicarIntranet" sql-type="bit" not-null="true" />
+    </property>
+    <property name="Propietario">
+      <column name="Propietario" sql-type="varchar" not-null="true" />
+    </property>
+    <property name="Fechacreacion">
+      <column name="FechaCreacion" sql-type="datetime" not-null="true" />
+    </property>
+    <property name="Usuarioactulizador">
+      <column name="UsuarioActulizador" sql-type="varchar" not-null="false" />
+    </property>
+    <property name="Fechaactulizacion">
+      <column name="FechaActulizacion" sql-type="datetime" not-null="false" />
+    </property>
+    <property name="Funciones">
+      <column name="Funciones" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Formacion">
+      <column name="Formacion" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Conocimientos">
+      <column name="Conocimientos" sql-type="nvarchar" not-null="false" />
+    </property>
+    <property name="Otros">
+      <column name="Otros" sql-type="nvarchar" not-null="false" />
+    </property>
+   <!-- <bag name="HermecoCvrequisicionhojavida">
+      <key column="IdRequisicion" />
+      <one-to-many class="HermecoCvrequisicionhojavida" />
+    </bag>-->
+  </class>
+</hibernate-mapping>

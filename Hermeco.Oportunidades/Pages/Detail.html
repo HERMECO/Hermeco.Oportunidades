@@ -1,0 +1,45 @@
+﻿<section>
+
+
+    <div class="page-container-responsive lower-content">
+        <section class="space-4">
+            <div class="row position space-6">
+                <div class="col-12">
+
+                    <header class="container component-header">
+                        <div class="row">
+                            <h2><span>{{oportunidad.Cargo}}</span></h2>
+                        </div>
+                        <div class="row">
+                            <h4><span>{{oportunidad.Ciudadsolicitud}}</span></h4>
+                        </div>
+                    </header>
+
+                    <div class="container component-body">
+                        <h3><span>Funciones</span></h3>
+                        <span>{{oportunidad.Funciones}}</span>
+                        <br />
+                        <br />
+                        <h3><span>Requisitos</span></h3>
+                        <br />
+                        <ul>
+                            <li><span>Profesión: {{oportunidad.Profesion}}</span></li>
+                            <li><span>Formación: {{oportunidad.Formacion}}</span></li>
+                            <li><span>Conocimientos Específicos: {{oportunidad.Conocimientos}}</span></li>
+                            <li><span>Otros: {{oportunidad.Otros}}</span></li>
+                            <li><span>Experiencia: {{oportunidad.Experiencia}}</span></li>
+                            <li><span>Fecha de cierre: {{oportunidad.Fechafin | date:'dd/MM/yyyy'}}</span></li>
+                        </ul>
+                        </br>
+                        <a href="#!apply/{{oportunidad.Idrequisicion}}" id="applyButton" class="btn btn-large btn-primary" style="position: relative; margin-top: -21px;">
+                            Aplicar ahora
+                        </a>                       
+                        </br>
+                        <a href="#convocatorias">Volver a las oportunidades abiertas</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</section>
