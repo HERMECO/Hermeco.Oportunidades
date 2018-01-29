@@ -57,10 +57,6 @@
         $scope.headerClass = '';
         $scope.showAlert = false;
         $scope.submit = function (Application) {
-            Application.IdRequisicion = $scope.oportunidad.Idrequisicion;
-            Application.Cargo = $scope.oportunidad.Cargo;
-            Application.Doc = $(".file")[0].files[0];
-            //var mydata = JSON.stringify(Application);
             console.log($scope.oportunidad);
             $scope.showAlert = false;
             var model = new FormData;
@@ -71,27 +67,25 @@
             model.append('Email', Application.Email);
             model.append('Doc', $(".file")[0].files[0]);
             $scope.showLoader = true;
+            $scope.files = []; 
+            $scope.jsonData = JSON.stringify(Application);
+            $scope.files.push($(".file")[0].files[0]); 
+            
             $http({
+                url: '/Hermeco.Oportunidades/api/Aplicacion',
                 method: 'POST',
-                url: '/Hermeco.Oportunidades/api/Aplicacion/Enviar',
-                data: $scope.Application,
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                
-                //url: 'Hermeco.Oportunidades/api/Aplicacion',
-                //method: 'POST',
-                ////dataType: 'json',
-                //data: model,
-                
-                //headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                //processData: false,
-                //contentType: false,
-                //headers: { 'Content-Type': 'application/json' }
-                
-                //transformRequest: angular.identity
+                dataType: 'json',
+                data: model,
+                processData: false,
+                contentType: false,
+                headers: { 'Content-Type': undefined },
+                transformRequest: angular.identity
+               
+
             }).then(function (success) {
+                console.log(success);
                 $scope.showLoader = false;
                 $window.location.href = '#!/success';
-                $scope.showLoader = false;
             }, function (error) {
                 console.log('error aqui' + error);
                 $scope.showAlert = true;
@@ -99,6 +93,8 @@
                 $scope.alertTitle = 'Ups';
                 $scope.alertText = 'Se presentó un error al enviar tus datos.'
                 $scope.showLoader = false;
+            }).catch(function (e) {
+                console.log(e);
             });
         };
     });

@@ -13,7 +13,8 @@
     <div class="container component-body">
             
         <h3>Enviar tu aplicación</h3>
-        <form name="form1"  id="formApply"  ng-controller="ApplyController" ng-submit="submit(Application)">
+        <!--<form name="form1" method="post"   id="formApply" action="/Hermeco.Oportunidades/api/Aplicacion"  ng-controller="ApplyController" ng-submit="submit(Application)">-->
+        <form name="form1" id="formApply"  ng-controller="ApplyController" ng-submit="submit(Application)">
             <div class="loader" ng-show="showLoader"></div>
             <div class="alert alert-dismissable" ng-class="alertType" ng-show="showAlert">
                 <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -54,8 +55,8 @@
             </div>
             <div>
                 <!--<input type="submit" class="btn btn-lg btn-primary" value="Enviar" ng-click="submit(Application)"/>-->
-                <input type="submit" class="btn btn-lg btn-primary" value="Enviar" />                
-            </div>            
+                <input type="submit" class="btn btn-lg btn-primary" value="Enviar" />
+            </div>
         </form>
     </div>
 
