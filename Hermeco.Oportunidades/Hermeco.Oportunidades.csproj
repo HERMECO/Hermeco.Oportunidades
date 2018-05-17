@@ -196,7 +196,6 @@
     <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\main.js" />
     <Content Include="Email\Aplicacion.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -222,7 +221,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
