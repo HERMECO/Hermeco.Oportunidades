@@ -1,4 +1,5 @@
 ﻿using Hermeco.Oportunidades.Models;
+using Newtonsoft.Json;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -8,9 +9,11 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Hermeco.Oportunidades.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class AplicacionController : ApiController
     {
         public static Logger logger = LogManager.GetCurrentClassLogger();
@@ -27,23 +30,23 @@ namespace Hermeco.Oportunidades.Controllers
         }
         
         // POST: api/Aplicacion        
-        public HttpResponseMessage Post()
+        public HttpResponseMessage Post(Application app)
         {
             HttpResponseMessage result = null;
             try
             {
                 var httpRequest = HttpContext.Current.Request;
-
-                Application aplicacion = new Application();
-                aplicacion.Cargo = httpRequest.Form["Cargo"].ToString();
-                aplicacion.Email = httpRequest.Form["Email"].ToString();
-                aplicacion.IdRequisicion = int.Parse(httpRequest.Form["Idrequisicion"].ToString());
-                aplicacion.Nombre = httpRequest.Form["Nombre"].ToString();
-                aplicacion.Telefono = httpRequest.Form["Telefono"].ToString();
+                Application aplicacion = JsonConvert.DeserializeObject<Application>(httpRequest.Form["Aplicacion"].ToString());
+                //Application aplicacion = new Application();
+                //aplicacion.Cargo = httpRequest.Form["Cargo"].ToString();
+                //aplicacion.Email = httpRequest.Form["Email"].ToString();
+                //aplicacion.IdRequisicion = int.Parse(httpRequest.Form["Idrequisicion"].ToString());
+                //aplicacion.Nombre = httpRequest.Form["Nombre"].ToString();
+                //aplicacion.Telefono = httpRequest.Form["Telefono"].ToString();
 
                 
                 string from = ConfigurationManager.AppSettings["FromEmail"].ToString();
-                string ruta = ConfigurationManager.AppSettings["RutaEmail"].ToString();
+                string ruta = HttpRuntime.AppDomainAppPath + "Email\\Aplicacion.html";//ConfigurationManager.AppSettings["RutaEmail"].ToString();
                 string CCEmail = ConfigurationManager.AppSettings["CCEmail"].ToString();
                 string email = ConfigurationManager.AppSettings["Email"].ToString();
                 string errorEmail = ConfigurationManager.AppSettings["ErrorEmail"].ToString();
@@ -66,7 +69,7 @@ namespace Hermeco.Oportunidades.Controllers
                         }
 
                         Dictionary<string, string> parameters = new Dictionary<string, string>();
-                        parameters.Add("{NombreCargo}", httpRequest.Form["Cargo"].ToString());
+                        parameters.Add("{NombreCargo}", aplicacion.Cargo);
                         parameters.Add("{Nombre}", aplicacion.Nombre);
                         parameters.Add("{Email}", aplicacion.Email);
                         parameters.Add("{Tele}", aplicacion.Telefono);
@@ -82,10 +85,13 @@ namespace Hermeco.Oportunidades.Controllers
                     else
                     {
                         result = Request.CreateResponse(HttpStatusCode.BadRequest);
+                        logger.Error("Error al adjuntar archivo");
+                        Utilities.Utilities.SendEmail("Error al enviar aplicación", "", "Sin archivo adjunto", "info@offcorss.com", errorEmail, null, false, "");
                     }
                 }
                 catch (Exception ex)
                 {
+                    logger.Error(ex);
                     result = Request.CreateResponse(HttpStatusCode.InternalServerError);
                     Utilities.Utilities.SendEmail("Error al enviar aplicación", "", ex.Message, "info@offcorss.com", errorEmail, null, false, "");
                 }

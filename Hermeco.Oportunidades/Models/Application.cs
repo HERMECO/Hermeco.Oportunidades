@@ -11,5 +11,6 @@ namespace Hermeco.Oportunidades.Models
         public string Email { get; set; }
         public string Telefono { get; set; }
         
+        
     }
 }
